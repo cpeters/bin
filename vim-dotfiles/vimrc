@@ -22,7 +22,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'                          " let Vundle manage Vundle, required
 
 Plugin 'AndrewRadev/writable_search.vim'            " Grep for something, then write the original files directly through the search results
-Plugin 'Blackrush/vim-gocode'                       " Golang bundle
 Plugin 'DataWraith/auto_mkdir'                      " Allows you to save files into directories that do not exist yet
 Plugin 'JazzCore/ctrlp-cmatcher'                    " CtrlP C matching extension
 Plugin 'MarcWeber/vim-addon-mw-utils'               " vim-snipmate dependency
@@ -50,13 +49,11 @@ Plugin 'sjl/vitality.vim'                           " Make Vim play nicely with 
 Plugin 'tomtom/tlib_vim'                            " vim-snipmate dependency
 Plugin 'tpope/vim-abolish'                          " easily search for, substitute, and abbreviate multiple variants of a word
 Plugin 'tpope/vim-bundler'                          " makes source navigation of bundled gems easier
-Plugin 'tpope/vim-cucumber'                         " provides syntax highlightling, indenting, and a filetype plugin
 Plugin 'tpope/vim-dispatch'                         " Asynchronous build and test dispatcher
 Plugin 'tpope/vim-endwise'                          " wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
 Plugin 'tpope/vim-fugitive'                         " Git plugin
 Plugin 'tpope/vim-haml'                             " HAML support
 Plugin 'tpope/vim-projectionist'                    " project configuration
-Plugin 'tpope/vim-rails'                            " Rails helpers
 Plugin 'tpope/vim-rake'                             " makes Ruby project navigation easier for non-Rails projects
 Plugin 'tpope/vim-repeat'                           " Enable repeating supported plugin maps with '.'
 Plugin 'tpope/vim-surround'                         " makes working w/ quotes, braces,etc. easier
@@ -64,13 +61,8 @@ Plugin 'tpope/vim-unimpaired'                       " pairs of handy bracket map
 Plugin 'vim-ruby/vim-ruby'                          " packaged w/ vim but this is latest and greatest
 Plugin 'vim-scripts/regreplop.vim'                  " operator to replace motion/visual with a register
 Plugin 'vim-scripts/vim-auto-save'                  " automatically save changes to disk
-Plugin 'elmcast/elm-vim'                            " elm syntax highlighting and utilities
 Plugin 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plugin 'aperezdc/vim-template'                      " templates by file type
-Plugin 'leafgarland/typescript-vim'                 " Typescript syntax
-Plugin 'Quramy/tsuquyomi'                           " Typescript tools
-Plugin 'Shougo/vimproc'                             " Async command processor
-Plugin 'kchmck/vim-coffee-script'                   " Coffeescript plugin
 
 call vundle#end()
 
@@ -83,7 +75,7 @@ endif
 " Settings
 "#############################################################################
 set autoread                                    " Detect file changes refresh buffer
-set background=dark                             " Dark colored background
+set background=light                             " Dark colored background
 set backspace=indent,eol,start                  " Backspace of newlines
 set colorcolumn=79                              " Show vertical column
 set cursorline                                  " Highlight current line
@@ -96,7 +88,8 @@ set ignorecase                                  " Ignore case when searching
 set incsearch                                   " Use incremental search
 set laststatus=2                                " Use two rows for status line
 set list                                        " Show invisible chars
-set listchars=tab:»·,trail:·                    " Show tabs and trailing whitespace only
+"set listchars=tab:»·,trail:·                    " Show tabs and trailing whitespace only
+set listchars=tab:>-,trail:.,extends:>          " Show tabs and trailing whitespace only
 set nocompatible                                " Not compatible w/ vi
 set number                                      " Display line numbers
 set ruler                                       " Show line and column number of cursor
@@ -149,18 +142,15 @@ let g:ctrlp_user_command = {
     \ 'fallback': 'ag %s -l --nocolor -g ""' }
 
 let NERDSpaceDelims = 1
+set encoding=utf-8
+
+"let NERDTreeDirArrows = 0
 
 let ruby_operators=1
 
 let g:solarized_termcolors=256
 let g:solarized_visibility="high"
 let g:solarized_contrast="high"
-
-
-let g:testify_launcher = "Dispatch "
-let g:testify_runners = {
-            \ 'cucumber': 'zeus cucumber ',
-            \ 'rspec': 'zeus rspec ' }
 
 let g:auto_save = 1
 let g:auto_save_no_updatetime = 1
@@ -264,12 +254,6 @@ map <F9> :StarscopeUpdate<cr>
 
 " Call the 'alternative' script
 nnoremap <Leader>A :Alternative<CR>
-
-"Copy yml key under the cursor"
-nnoremap <Leader>k :call YMLToKey()<CR>
-function YMLToKey()
-  execute '!~/Dropbox/developer_stuff/bin/yml_to_key key ' . expand('%:p') . ":" . line(".") . ' | xargs echo -n | pbcopy'
-endfunction
 
 "#############################################################################
 " Autocommands
