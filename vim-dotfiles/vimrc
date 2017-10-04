@@ -23,7 +23,7 @@ Plugin 'gmarik/Vundle.vim'                          " let Vundle manage Vundle, 
 
 Plugin 'AndrewRadev/writable_search.vim'            " Grep for something, then write the original files directly through the search results
 Plugin 'DataWraith/auto_mkdir'                      " Allows you to save files into directories that do not exist yet
-"Plugin 'JazzCore/ctrlp-cmatcher'                    " CtrlP C matching extension
+Plugin 'JazzCore/ctrlp-cmatcher'                    " CtrlP C matching extension
 Plugin 'MarcWeber/vim-addon-mw-utils'               " vim-snipmate dependency
 Plugin 'airblade/vim-gitgutter'                     " shows a git diff in the gutter (sign column) and stages/reverts hunks
 Plugin 'altercation/vim-colors-solarized'           " Solarized color theme
@@ -76,7 +76,7 @@ endif
 " Settings
 "#############################################################################
 set autoread                                    " Detect file changes refresh buffer
-set background=light                             " Dark colored background
+set background=dark                             " Dark colored background
 set backspace=indent,eol,start                  " Backspace of newlines
 set colorcolumn=79                              " Show vertical column
 set cursorline                                  " Highlight current line
@@ -140,12 +140,13 @@ let g:ctrlp_user_command = {
     \ 'types': {
     \   1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others']
     \ },
-    \ 'fallback': 'ag %s -l --nocolor -g ""' }
+    \ 'fallback': 'find %s -type f' }
 
-let NERDSpaceDelims = 1
 set encoding=utf-8
-
-"let NERDTreeDirArrows = 0
+let NERDSpaceDelims = 1
+let NERDTreeDirArrows = 0
+let g:NERDTreeDirArrowExpandable="+"
+let g:NERDTreeDirArrowCollapsible="~"
 
 let ruby_operators=1
 
@@ -199,9 +200,10 @@ map <leader>qc :cclose<CR>
 vmap <tab> >gv
 vmap <s-tab> <gv
 
-" ctags again with gemhome added
-map <leader>rt :!/usr/local/bin/ctags -R --exclude=.git --exclude=log * `rvm gemhome`/*<CR>
-map <leader>rT :!rdoc -f tags -o tags * `rvm gemhome` --exclude=.git --exclude=log
+" ctags 
+set tags=./tags;
+map <leader>rt :!/usr/local/bin/exctags -R .<CR>
+map <leader>rT :!rdoc -f tags -o tags * --exclude=.git --exclude=log
 
 " Comment/uncomment lines
 map <leader>/ <plug>NERDCommenterToggle
@@ -293,5 +295,6 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Word wrap without line breaks for text files
 au BufRead,BufNewFile *.txt,*.md,*.markdown,*.rdoc set wrap linebreak nolist textwidth=0 wrapmargin=0
+
 
 colorscheme solarized
