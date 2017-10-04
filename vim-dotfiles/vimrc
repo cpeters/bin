@@ -23,7 +23,7 @@ Plugin 'gmarik/Vundle.vim'                          " let Vundle manage Vundle, 
 
 Plugin 'AndrewRadev/writable_search.vim'            " Grep for something, then write the original files directly through the search results
 Plugin 'DataWraith/auto_mkdir'                      " Allows you to save files into directories that do not exist yet
-Plugin 'JazzCore/ctrlp-cmatcher'                    " CtrlP C matching extension
+"Plugin 'JazzCore/ctrlp-cmatcher'                    " CtrlP C matching extension
 Plugin 'MarcWeber/vim-addon-mw-utils'               " vim-snipmate dependency
 Plugin 'airblade/vim-gitgutter'                     " shows a git diff in the gutter (sign column) and stages/reverts hunks
 Plugin 'altercation/vim-colors-solarized'           " Solarized color theme
@@ -36,7 +36,8 @@ Plugin 'godlygeek/csapprox'                         " dependency for Solarized
 Plugin 'godlygeek/tabular'                          " dependency of vim-markdown
 Plugin 'honza/vim-snippets'                         " vim-snipmate default snippets
 Plugin 'kana/vim-textobj-user'                      " dependency for rubyblock
-Plugin 'kien/ctrlp.vim'                             " Fuzzy file, buffer, mru, tag, etc finder
+"Plugin 'kien/ctrlp.vim'                             " Fuzzy file, buffer, mru, tag, etc finder
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'majutsushi/tagbar'                          " displays tags in a window, ordered by scope
 Plugin 'mustache/vim-mustache-handlebars'           " mustache and handlebars mode
 Plugin 'nelstrom/vim-textobj-rubyblock'             " custom text object for selecting Ruby blocks
