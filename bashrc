@@ -1,6 +1,3 @@
-. ~/bin/dotfiles/bash/env
-. ~/bin/dotfiles/bash/config
-. ~/bin/dotfiles/bash/aliases
-. ~/bin/dotfiles/bash/startup
+#	dot.bashrc,v 1.12 ariel copied from dot.csh
 
-
+alias ctags='/usr/local/bin/exctags'
