@@ -64,6 +64,7 @@ Plugin 'vim-scripts/regreplop.vim'                  " operator to replace motion
 Plugin 'vim-scripts/vim-auto-save'                  " automatically save changes to disk
 Plugin 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plugin 'aperezdc/vim-template'                      " templates by file type
+Plugin 'janko-m/vim-test'
 
 call vundle#end()
 
@@ -241,10 +242,12 @@ nnoremap <C-l> <C-w>l
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
-" Run tests
-map <leader>t :wa <bar> TestifyRunFocused<CR>
-nmap <leader>T :wa <bar> TestifyRunFile<CR>
-nmap <CR><CR> :wa <bar> TestifyRunFile<CR>
+" Run tests - janko-m/vim-test
+"nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <CR><CR> :TestFile<CR>
+" nmap <silent> <leader>a :TestSuite<CR>
+" nmap <silent> <leader>l :TestLast<CR>
+" nmap <silent> <leader>g :TestVisit<CR>
 
 " Toggle paste/nopaste mode
 map <F2> :set paste!<CR>
@@ -252,11 +255,8 @@ map <F2> :set paste!<CR>
 " Toggle TagBar
 map <F8> :TagbarToggle<CR>
 
-" Regenerate ctags and cscope.out using starscope gem
-map <F9> :StarscopeUpdate<cr>
-
 " Call the 'alternative' script
-nnoremap <Leader>A :Alternative<CR>
+" nnoremap <Leader>A :Alternative<CR>
 
 "#############################################################################
 " Autocommands
