@@ -64,7 +64,6 @@ Plugin 'vim-scripts/regreplop.vim'                  " operator to replace motion
 Plugin 'vim-scripts/vim-auto-save'                  " automatically save changes to disk
 Plugin 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plugin 'aperezdc/vim-template'                      " templates by file type
-Plugin 'janko-m/vim-test'
 
 call vundle#end()
 
@@ -182,16 +181,14 @@ map \ :NERDTreeToggle<CR>
 map \| :NERDTreeFind<CR>
 
 " Search using Ag
-noremap ,a :Ag<CR>
+" noremap ,a :Ag<CR>
+noremap ,a :grep <cword> --exclude=*/tags -r .<CR>
 
 " Ctrl-P Mapping
 nnoremap <Leader>f :CtrlP<cr>
 
-" split pane shortcut
-nnoremap <Leader>v :vs<cr>
-
 " Open Fugitive status buffer
-nnoremap <Leader>g :Gstatus<CR>
+"nnoremap <Leader>g :Gstatus<CR>
 
 " Open and close the quickfix window
 map <leader>qo :copen<CR>
@@ -204,7 +201,7 @@ vmap <s-tab> <gv
 " ctags 
 set tags=./tags;
 map <leader>rt :!/usr/local/bin/exctags -R .<CR>
-map <leader>rT :!rdoc -f tags -o tags * --exclude=.git --exclude=log
+"map <leader>rT :!rdoc -f tags -o tags * --exclude=.git --exclude=log
 
 " Comment/uncomment lines
 map <leader>/ <plug>NERDCommenterToggle
@@ -242,12 +239,9 @@ nnoremap <C-l> <C-w>l
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
-" Run tests - janko-m/vim-test
-"nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <CR><CR> :TestFile<CR>
-" nmap <silent> <leader>a :TestSuite<CR>
-" nmap <silent> <leader>l :TestLast<CR>
-" nmap <silent> <leader>g :TestVisit<CR>
+" Run tests
+nmap <silent> <CR><CR> :!ruby -W0 -I:test % <CR>
+nmap <silent> <CR>a :!RUBYOPTS=-W0 rake test <CR>
 
 " Toggle paste/nopaste mode
 map <F2> :set paste!<CR>
@@ -257,6 +251,12 @@ map <F8> :TagbarToggle<CR>
 
 " Call the 'alternative' script
 " nnoremap <Leader>A :Alternative<CR>
+
+" Perforce commands since the vim plugin did not work
+map <Leader>ps :!~/bin/p4status <CR>
+map <Leader>pe :!p4 edit % <CR>
+map <Leader>pa :!p4 add % <CR>
+map <Leader>pr :!p4 revert % <CR>
 
 "#############################################################################
 " Autocommands

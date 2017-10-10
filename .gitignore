@@ -4,6 +4,6 @@ url
 elpa
 .smex-items
 places
-show_edited
-status
-untracked
+p4edited
+p4status
+p4untracked
