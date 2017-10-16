@@ -88,8 +88,8 @@ set ignorecase                                  " Ignore case when searching
 set incsearch                                   " Use incremental search
 set laststatus=2                                " Use two rows for status line
 set list                                        " Show invisible chars
-"set listchars=tab:»·,trail:·                    " Show tabs and trailing whitespace only
-set listchars=tab:>-,trail:.,extends:>          " Show tabs and trailing whitespace only
+" set listchars=tab:>-,trail:.                   " Show tabs and trailing chars
+set listchars=tab:»·,trail:·                    " Show tabs and trailing whitespace only
 set nocompatible                                " Not compatible w/ vi
 set number                                      " Display line numbers
 set ruler                                       " Show line and column number of cursor
@@ -139,8 +139,9 @@ let g:ctrlp_user_command = {
     \ 'types': {
     \   1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others']
     \ },
-    \ 'fallback': 'find %s -type f' }
+    \ 'fallback': 'ag %s -l --nocolor -g ""' }
 
+scriptencoding utf-8
 set encoding=utf-8
 let NERDSpaceDelims = 1
 let NERDTreeDirArrows = 0
@@ -256,6 +257,8 @@ map <Leader>ps :!~/bin/p4status <CR>
 map <Leader>pe :!p4 edit % <CR>
 map <Leader>pa :!p4 add % <CR>
 map <Leader>pr :!p4 revert % <CR>
+
+
 
 "#############################################################################
 " Autocommands
