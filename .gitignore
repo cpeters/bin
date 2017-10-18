@@ -12,3 +12,4 @@ yolo
 clean_site
 deploy
 restart
+vim-dotfiles/vim/plugged
