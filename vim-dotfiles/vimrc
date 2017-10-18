@@ -241,7 +241,7 @@ vnoremap Q :norm @q<cr>
 
 " Run tests
 nmap <silent> <CR><CR> :!ruby -W0 -I:test % <CR>
-nmap <silent> <CR>a :!RUBYOPTS=-W0 rake test <CR>
+nmap <silent> <Leader>t :!RUBYOPTS=-W0 rake test <CR>
 
 " Toggle paste/nopaste mode
 map <F2> :set paste!<CR>

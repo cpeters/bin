@@ -7,6 +7,7 @@ alias p4edit='p4 edit'
 alias p4diff='p4 diff'
 alias p4submit='p4 submit'
 alias p4revert='p4 revert'
+alias p4sync='p4 sync'
 
 export P4EDITOR=vim
 export PATH=$HOME/tmux/bin:$PATH
