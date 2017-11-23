@@ -22,8 +22,7 @@ Plug 'godlygeek/csapprox'                         " dependency for Solarized
 Plug 'godlygeek/tabular'                          " dependency of vim-markdown
 Plug 'honza/vim-snippets'                         " vim-snipmate default snippets
 Plug 'kana/vim-textobj-user'                      " dependency for rubyblock
-"Plug 'kien/ctrlp.vim'                             " Fuzzy file, buffer, mru, tag, etc finder
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'                         " fuzzy finder 
 Plug 'majutsushi/tagbar'                          " displays tags in a window, ordered by scope
 Plug 'nelstrom/vim-textobj-rubyblock'             " custom text object for selecting Ruby blocks
 Plug 'pangloss/vim-javascript'                    " Vastly improved Javascript indentation and syntax support
@@ -49,6 +48,7 @@ Plug 'vim-scripts/regreplop.vim'                  " operator to replace motion/v
 Plug 'vim-scripts/vim-auto-save'                  " automatically save changes to disk
 Plug 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plug 'aperezdc/vim-template'                      " templates by file type
+Plug 'LaTeX-Box-Team/LaTeX-Box'
 
 call plug#end()
 
@@ -162,8 +162,7 @@ map \ :NERDTreeToggle<CR>
 map \| :NERDTreeFind<CR>
 
 " Search using Ag
-" noremap ,a :Ag<CR>
-noremap ,a :grep <cword> --exclude=*/tags -r .<CR>
+noremap ,a :Ag<CR>
 
 " Ctrl-P Mapping
 nnoremap <Leader>f :CtrlP<cr>
@@ -181,7 +180,7 @@ vmap <s-tab> <gv
 
 " ctags 
 set tags=./tags;
-map <leader>rt :!/usr/local/bin/exctags -R .<CR>
+map <leader>rt :!/usr/local/bin/exctags --exclude=test/testint2{4,6,7} -R .<CR>
 "map <leader>rT :!rdoc -f tags -o tags * --exclude=.git --exclude=log
 
 " Comment/uncomment lines
@@ -223,6 +222,8 @@ vnoremap Q :norm @q<cr>
 " Run tests
 nmap <silent> <CR><CR> :!ruby -W0 -I:test % <CR>
 nmap <silent> <Leader>t :!RUBYOPTS=-W0 rake test <CR>
+map <Leader>d :!accio-deploy-nodocs $ACCIO_INSTALL_USER <CR>
+map <Leader>D :!accio-deploy $ACCIO_INSTALL_USER <CR>
 
 " Toggle paste/nopaste mode
 map <F2> :set paste!<CR>
@@ -234,10 +235,11 @@ map <F8> :TagbarToggle<CR>
 " nnoremap <Leader>A :Alternative<CR>
 
 " Perforce commands since the vim plugin did not work
-map <Leader>ps :!~/bin/p4status <CR>
+map <Leader>ps :!p4status <CR>
 map <Leader>pe :!p4 edit % <CR>
 map <Leader>pa :!p4 add % <CR>
 map <Leader>pr :!p4 revert % <CR>
+map <Leader>pb :!p4blame % <CR>
 
 
 
@@ -251,7 +253,7 @@ function! StripTrailingWhitespace()
   %s/\s\+$//e
   call setpos('.', save_cursor)
 endfunction
-autocmd BufWritePre *.rb,*.yml,*.js,*.css,*.less,*.sass,*.scss,*.html,*.xml,*.erb,*.haml,*.feature call StripTrailingWhitespace()
+" autocmd BufWritePre *.rb,*.yml,*.js,*.css,*.less,*.sass,*.scss,*.html,*.xml,*.erb,*.haml,*.feature call StripTrailingWhitespace()
 
 " Highlight Ruby files
 au BufRead,BufNewFile *.thor set filetype=ruby
@@ -267,6 +269,9 @@ autocmd BufRead,BufNewFile *.json set filetype=javascript
 " Highlight Jasmine fixture files as HTML
 autocmd BufRead,BufNewFile *.jasmine_fixture set filetype=html
 
+" Highlight HTMNL from the browser menu
+autocmd BufRead,BufNewFile *.htmnl set filetype=html
+
 " When viewing a git tree or blob, quickly move up to view parent
 autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
@@ -280,3 +285,4 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 au BufRead,BufNewFile *.txt,*.md,*.markdown,*.rdoc set wrap linebreak nolist textwidth=0 wrapmargin=0
 
 colorscheme solarized
+
