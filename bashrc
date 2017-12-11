@@ -8,5 +8,9 @@ export PATH=$HOME/the_silver_searcher/bin:$PATH
 export VISUAL=vim
 export EDITOR="$VISUAL"
 
+if [ -f ~/accio-bin/bash-files.sh ]; then
+  source ~/accio-bin/bash-files.sh
+fi
+
 
 

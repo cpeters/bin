@@ -148,6 +148,7 @@ let g:auto_save_in_insert_mode = 0
 
 let g:templates_directory = "~/.vim/templates/"
 
+let g:vim_markdown_folding_disabled = 1
 "#############################################################################
 " Keymaps
 "#############################################################################
@@ -187,7 +188,7 @@ vmap <s-tab> <gv
 
 " ctags 
 set tags=./tags;
-map <leader>rt :!/usr/local/bin/exctags --exclude=test/testint2{4,6,7} -R .<CR>
+map <leader>rt :!/usr/local/bin/exctags -R .<CR>
 "map <leader>rT :!rdoc -f tags -o tags * --exclude=.git --exclude=log
 
 " Comment/uncomment lines
