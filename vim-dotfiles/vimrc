@@ -22,7 +22,7 @@ Plug 'godlygeek/csapprox'                         " dependency for Solarized
 Plug 'godlygeek/tabular'                          " dependency of vim-markdown
 Plug 'honza/vim-snippets'                         " vim-snipmate default snippets
 Plug 'kana/vim-textobj-user'                      " dependency for rubyblock
-Plug 'ctrlpvim/ctrlp.vim'                         " fuzzy finder 
+Plug 'ctrlpvim/ctrlp.vim'                         " fuzzy finder
 Plug 'majutsushi/tagbar'                          " displays tags in a window, ordered by scope
 Plug 'nelstrom/vim-textobj-rubyblock'             " custom text object for selecting Ruby blocks
 Plug 'pangloss/vim-javascript'                    " Vastly improved Javascript indentation and syntax support
@@ -37,7 +37,6 @@ Plug 'tpope/vim-bundler'                          " makes source navigation of b
 Plug 'tpope/vim-dispatch'                         " Asynchronous build and test dispatcher
 Plug 'tpope/vim-endwise'                          " wisely add 'end' in ruby, endfunction/endif/more in vim script, etc
 Plug 'tpope/vim-fugitive'                         " Git plugin
-Plug 'tpope/vim-haml'                             " HAML support
 Plug 'tpope/vim-projectionist'                    " project configuration
 Plug 'tpope/vim-rake'                             " makes Ruby project navigation easier for non-Rails projects
 Plug 'tpope/vim-repeat'                           " Enable repeating supported plugin maps with '.'
@@ -48,8 +47,8 @@ Plug 'vim-scripts/regreplop.vim'                  " operator to replace motion/v
 Plug 'vim-scripts/vim-auto-save'                  " automatically save changes to disk
 Plug 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plug 'aperezdc/vim-template'                      " templates by file type
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-
+Plug 'LaTeX-Box-Team/LaTeX-Box'                   " syntax highlighting for LaTex
+Plug 'skalnik/vim-vroom'                          " run tests
 call plug#end()
 
 
@@ -137,11 +136,6 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 let ruby_operators=1
 
-let g:testify_launcher = "Dispatch "
-let g:testify_runners = {
-            \ 'cucumber': 'zeus cucumber ',
-            \ 'rspec': 'zeus rspec ' }
-
 let g:auto_save = 1
 let g:auto_save_no_updatetime = 1
 let g:auto_save_in_insert_mode = 0
@@ -228,8 +222,11 @@ nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
 " Run tests
-nmap <silent> <CR><CR> :!ruby -W0 -I:test % <CR>
-nmap <silent> <Leader>t :!RUBYOPTS=-W0 rake test <CR>
+let g:vroom_use_bundle_exec=0
+let g:vroom_use_dispatch=1
+nmap <silent> <CR><CR> :VroomRunTestFile <CR>
+" nmap <silent> <Leader>t :!RUBYOPTS=-W0 rake test <CR>
+
 map <Leader>d :!accio-deploy-nodocs $ACCIO_INSTALL_USER <CR>
 map <Leader>D :!accio-deploy $ACCIO_INSTALL_USER <CR>
 
