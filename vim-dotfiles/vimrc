@@ -45,12 +45,18 @@ Plug 'vim-scripts/vim-auto-save'                  " automatically save changes t
 Plug 'lmeijvogel/vim-yaml-helper'                 " navigate yaml files more easily
 Plug 'aperezdc/vim-template'                      " templates by file type
 Plug 'vim-syntastic/syntastic'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' } " autocomplete intellisense
-Plug 'wokalski/autocomplete-flow'
-" For func argument completion
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 Plug 'artnez/vim-wipeout'
+
+if has('nvim')
+  Plug 'wokalski/autocomplete-flow'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  " For func argument completion
+  Plug 'Shougo/neosnippet'
+  Plug 'Shougo/neosnippet-snippets'
+  let g:deoplete#enable_at_startup = 1
+  let g:neosnippet#enable_completed_snippet = 1
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
@@ -142,9 +148,6 @@ let g:auto_save_in_insert_mode = 0
 
 let g:templates_directory = "~/.vim/templates/"
 
-let g:deoplete#enable_at_startup = 1
-let g:neosnippet#enable_completed_snippet = 1
-let g:python3_host_prog = '/usr/local/bin/python3'
 
 "#############################################################################
 " Keymaps
